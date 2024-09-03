@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: 'Kanit', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 1250px;
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo no início */
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #004080;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+    background-color: #004080;
+    cursor: pointer;
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 300px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-title h1 {
+    color: #003366;
+    margin: 0;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 500px;
+    height: 400px;
+}
+
+.welcome-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 400px;
+    height: 150px;
+}
+.logo img {
+    width: 350px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.welcome-message {
+    text-align: center;
+}
+
+.welcome-message h1 {
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.welcome-message p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

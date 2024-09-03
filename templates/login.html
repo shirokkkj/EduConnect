@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduConnect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="icon" href="{{url_for('static',  filename='images/educonnect.png')}}" type="image/x-icon">
+</head>
+<body>
+        <div class="login-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo">
+            </div>
+            <h1>Bem-vindo novamente!</h1>
+            <form action="login" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    {{ form.name(class='form-control', id='username', placeholder="Digite seu nome") }}
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    {{ form.password(class="form-control", id="password", placeholder="Digite sua senha") }}
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: 'Kanit', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://img.freepik.com/fotos-gratis/alunos-com-laptop-medio-tiro_23-2148950530.jpg?t=st=1725363773~exp=1725367373~hmac=49b5e9251313439325bc45cdc6281c906dbdf7ac32641af46e899589a3f18dbf&w=1380');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Animação de carregamento da página */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.login-container {
+    background: linear-gradient(145deg, rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.6)), 
+                url('https://img.freepik.com/vetores-gratis/fundo-de-onda-branca-suave_52683-55288.jpg?t=st=1725370171~exp=1725373771~hmac=97ffa1106d01786c9b6ea80d562d496c66486354ec4ff2142f3765ef4effefaf&w=1380'); /* Textura sutil */
+    background-size: cover;
+    background-blend-mode: overlay;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    animation: slideIn 0.8s ease-out;
+}
+
+/* Animação para container */
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.logo img {
+    width: 100px;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+/* Estilizando o cabeçalho */
+h1 {
+    text-align: center;
+    color: #1f6caa; /* Branco para contraste */
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Estilo dos inputs e labels */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1f6caa; /* Azul Claro */
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #64b5f6; /* Azul Médio */
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    max-width: 367px;
+}
+
+/* Transição ao focar nos inputs */
+.form-control:focus {
+    border-color: #2196f3; /* Azul Intenso */
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+    outline: none;
+}
+
+/* Botão de submit */
+button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background: #1e88e5; /* Azul Médio */
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #1565c0; /* Azul Profundo */
+}
+
+/* Animação no botão ao clicar */
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Background animado */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.1), transparent 70%);
+    animation: moveBackground 10s infinite linear;
+    z-index: -1;
+}
+
+/* Animação do fundo */
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}

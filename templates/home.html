@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>EduConnect</h2>
+            <ul>
+                <li>Campo 1</li>
+                <li>Campo 2</li>
+                <li>Campo 3</li>
+                <!-- Adicione mais campos conforme necessário -->
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo"> 
+                </div>
+            </div>
+            <div class="welcome-box">
+                <div class="welcome-message">
+                    <h1>Bem-vindo ao EduConnect!</h1>
+                    <p>Estamos felizes em tê-lo conosco.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
