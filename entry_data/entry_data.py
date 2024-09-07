@@ -18,3 +18,13 @@ class Register(FlaskForm):
     
     
     submit = SubmitField('Entrar')
+    
+    
+class Registration_School(FlaskForm):
+    name = StringField(validators=[DataRequired(), Length(min=5, max=255)])
+    email = EmailField(validators=[DataRequired()])
+    adress = StringField(validators=[DataRequired()])
+    telephone = StringField(validators=[DataRequired()])
+    
+    
+    submit = SubmitField('Junte-se a nós!')

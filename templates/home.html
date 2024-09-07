@@ -5,31 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduConnect - Home</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h2>EduConnect</h2>
-            <ul>
-                <li>Campo 1</li>
-                <li>Campo 2</li>
-                <li>Campo 3</li>
-                <!-- Adicione mais campos conforme necessário -->
-            </ul>
+    
+    <header class="__header">
+        <h2 class="__header-title">Quem somos?</h2>
+    </header>
+    <hr class="line">
+    
+    <div class="about">
+        <div class="block-image">
+            <img  src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo" class="logo">
         </div>
-        <div class="main-content">
-            <div class="logo-box">
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo"> 
-                </div>
-            </div>
-            <div class="welcome-box">
-                <div class="welcome-message">
-                    <h1>Bem-vindo ao EduConnect!</h1>
-                    <p>Estamos felizes em tê-lo conosco.</p>
-                </div>
-            </div>
+        <div class="block-about">
+            <p class="about">
+                Somos uma plataforma destinada ao contato entre estudantes, pais e escolas. Apresentamos um serviço de boa qualidade,
+                dando a garantia de que conosco, a relação escolar estará mais presente do que nunca!
+            </p>
         </div>
     </div>
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
 </body>
 </html>

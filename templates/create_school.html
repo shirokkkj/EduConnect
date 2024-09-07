@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Escolas - EduConnect</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/schools.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+    <div class="container">
+        <header class="header">
+            <h1>Cadastro de Novas Escolas</h1>
+        </header>
+        <main class="main-content">
+            <form class="school-form" action="schools" method="POST">
+                <label for="school-name">Nome da Escola</label>
+                {{ form.name(class="school-name", id="name", placeholder="Nome da Escola") }}
+                
+                <label for="school-address">Endereço</label>
+                {{ form.adress(class="school-adress", id="adress", placeholder="Endereço da Escola") }}
+                
+                <label for="school-phone">Telefone</label>
+                {{ form.telephone(class="school-phone", id="phone", placeholder="Telefone de Contato") }}
+                
+                <label for="school-email">E-mail</label>
+                {{ form.email(class="school-email", id="email", placeholder="E-mail de contato") }}
+                
+                <button type="submit">Cadastrar</button>
+            </form>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Página Inicial</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/infos_school.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+    <div class="pre-container">
+        <header class="pre-header">
+            <h1>Bem-vindo ao EduConnect</h1>
+            <p>Seu portal de conexão com escolas</p>
+        </header>
+        <main class="pre-main-content">
+            <section class="info-section">
+                <h2>Sobre o EduConnect</h2>
+                <p>O EduConnect é um portal dedicado a facilitar a comunicação entre escolas e alunos, oferecendo uma plataforma intuitiva para gerenciar informações educacionais.</p>
+            </section>
+            <section class="cta-section">
+                <h2>Cadastre uma nova escola</h2>
+                <p>Quer adicionar uma nova escola ao nosso portal? Clique no botão abaixo para começar o processo de cadastro.</p>
+                <a href="schools" class="cta-button">Cadastrar Escola</a>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+</body>
+</html>

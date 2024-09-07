@@ -1,0 +1,60 @@
+Eu fiz esse template para as localidades:
+```
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Lista de Localizações</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Dimensão</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for location in locations %}
+      <tr>
+        <th scope="row">{{ location.id }}</th>
+        <td>{{ location.name }}</td>
+        <td>{{ location.type }}</td>
+        <td>{{ location.dimension }}</td>
+        <td>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal{{ location.id }}">
+            Ver Mais
+          </button>
+        </td>
+      </tr>
+
+      <!-- Modal -->
+      <div class="modal fade" id="locationModal{{ location.id }}" tabindex="-1" aria-labelledby="locationModalLabel{{ location.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="locationModalLabel{{ location.id }}">Residentes de {{ location.name }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    {% for resident in locations.residents %}
+                <li>
+                    <!-- Aqui você pode criar um link para o perfil do personagem -->
+                    <a href="/profile/{{ resident.['id'] }}">Personagem: ID {{ [resident.['name'] }}</a>
+                </li>
+                {% endfor %}
+       
+            </ol>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+```

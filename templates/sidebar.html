@@ -1,0 +1,26 @@
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body>
+    <nav class="side-bar">
+        <div class="logo-menu">
+            <img src="{{url_for('static', filename='images/logo_educonnect_side.png')}}" alt="" class="logo">
+        </div>
+
+        <ul class="list">
+            <li class="list-item">
+                <a href="home">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link-name">Dashboard</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="infos-school">
+                    <i class="bx bx-clipboard"></i>
+                    <span class="link-name">Junte-se!</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
