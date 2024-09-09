@@ -2,6 +2,9 @@ import jwt
 import datetime
 import os
 import string
+import phonenumbers
+import requests
+
 
 def create_token(username):
     payload = {
@@ -36,3 +39,36 @@ def check_password(password):
         return False
     
     return True
+
+
+def validate_phone_numbers(phonenumber):
+    try:
+        phone = phonenumbers.parse(phonenumber)
+        if not phonenumbers.is_valid_number(phone):
+            return False
+    except phonenumbers.NumberParseException as error:
+        return False
+    
+    return True
+
+
+def check_cep(cep):
+    
+    url = f"https://viacep.com.br/ws/{cep}/json/"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if 'erro' not in data:
+            return {
+                'cep': data.get('cep'),
+                'logradouro': data.get('logradouro'),
+                'complemento': data.get('complemento'),
+                'bairro': data.get('bairro'),
+                'cidade': data.get('localidade'),
+                'estado': data.get('uf')
+            }
+        else:
+            return 'CEP não encontrado.'
+    else:
+        return 'Erro ao buscar CEP.'

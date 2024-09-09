@@ -8,21 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="error-message" class="hide">{{ error_message }}</div> <!-- Mensagem de erro -->
+    <header class="__header">
+        <h2 class="__header-title">Participe com a sua escola!</h2>
+    </header>
+    <hr class="line">
     <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
     <div class="container">
-        <header class="header">
+        <div class="header">
             <h1>Cadastro de Novas Escolas</h1>
-        </header>
+        </div>
         <main class="main-content">
             <form class="school-form" action="schools" method="POST">
+                {{ form.hidden_tag() }}
                 <label for="school-name">Nome da Escola</label>
                 {{ form.name(class="school-name", id="name", placeholder="Nome da Escola") }}
                 
-                <label for="school-address">Endereço</label>
-                {{ form.adress(class="school-adress", id="adress", placeholder="Endereço da Escola") }}
+                <label for="school-address">CEP</label>
+                {{ form.cep(class="school-adress", id="adress", placeholder="CEP. Ex: 00000000") }}
                 
                 <label for="school-phone">Telefone</label>
-                {{ form.telephone(class="school-phone", id="phone", placeholder="Telefone de Contato") }}
+                {{ form.telephone(class="school-phone", id="phone", placeholder="Telefone de Contato. Ex: +55 (00) 0000-0000") }}
                 
                 <label for="school-email">E-mail</label>
                 {{ form.email(class="school-email", id="email", placeholder="E-mail de contato") }}
@@ -32,5 +38,23 @@
         </main>
     </div>
     <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+    <script>
+        window.onload = function () {
+            error_message = document.querySelector('.error-message')
+            if (error_message.textContent === 'None'){
+                error_message.classList.add('hide')
+            }
+            else{
+                error_message.classList.remove('hide')
+                error_message.classList.add('show')
+    
+                setInterval(function(){
+                    error_message.classList.remove('show')
+                    error_message.classList.add('hide')
+                }, 5000)
+            }
+            
+        }
+    </script>
 </body>
 </html>

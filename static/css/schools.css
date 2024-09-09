@@ -8,6 +8,24 @@ body {
     background-color: #f0f4f8;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 320px;
+    padding-block: 25px;
+    align-items: center;
+}
+
+header > .__header-title {
+    font-size: 25px;
+    color: #38b6ff;
+}
+
+
+.line {
+    opacity: 0.4;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -78,6 +96,35 @@ body {
 .school-form button:hover {
     background-color: #002a53;
     transform: scale(1.05);
+}
+
+
+.error-message {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #f44336; /* Vermelho para erro */
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateY(-20px); /* Inicialmente fora da posição */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
+
+/* Animação de entrada */
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0); /* Volta à posição original */
+}
+
+/* Animação de saída */
+.error-message.hide {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 @keyframes fadeIn {

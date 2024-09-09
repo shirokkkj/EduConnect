@@ -7,10 +7,30 @@ body {
     background-color: #f0f4f8;
 }
 
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 320px;
+    padding-block: 25px;
+    align-items: center;
+}
+
+header > .__header-title {
+    font-size: 25px;
+    color: #38b6ff;
+}
+
+
+.line {
+    opacity: 0.4;
+}
+
 .pre-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
+    padding-block: 150px;
 }
 
 .pre-header {

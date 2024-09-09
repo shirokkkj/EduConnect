@@ -23,7 +23,7 @@ class Register(FlaskForm):
 class Registration_School(FlaskForm):
     name = StringField(validators=[DataRequired(), Length(min=5, max=255)])
     email = EmailField(validators=[DataRequired()])
-    adress = StringField(validators=[DataRequired()])
+    cep = StringField(validators=[DataRequired()])
     telephone = StringField(validators=[DataRequired()])
     
     

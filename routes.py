@@ -1,5 +1,5 @@
 from flask import make_response, render_template, flash, redirect, url_for, request
-from helpers.utils import create_token, check_token, check_password
+from helpers.utils import create_token, check_token, check_password, validate_phone_numbers, check_cep
 from entry_data.entry_data import Login, Register, Registration_School
 from models.db_models import Schools
 from helpers.database_handler import get_session_for_school
@@ -61,22 +61,29 @@ def config_routes(app):
         form = Registration_School()
         token = request.cookies.get('acess_token')
         
-        print(request.method)
+        error_message = 'None'
         
-        if form.validate_on_submit():
-            print(form.telephone.data)
-            new_school = Schools(name=form.name.data, email=form.email.data, adress=form.adress.data, telephone=form.telephone.data)
-            db.session.add(new_school)
-            db.session.commit()
-            get_session_for_school(form.name.data)
-            return redirect(url_for('inf'))
-        else:
-            print(form.name.data, form.telephone.data)
+        if request.method == 'POST':
+            if form.validate_on_submit():
+                
+                if validate_phone_numbers(form.telephone.data):
+                    if isinstance(check_cep(form.cep.data), dict):
+                        new_school = Schools(name=form.name.data, email=form.email.data, adress=form.cep.data, telephone=form.telephone.data)
+                        db.session.add(new_school)
+                        db.session.commit()
+                        get_session_for_school(form.name.data.replace(' ', ''))
+                        return redirect(url_for('inf'))
+                    else:
+                        error_message = 'CEP Inválido.'
+                else:
+                    error_message = 'Número inserido é inválido.'
+            else:
+                print(form.name.data, form.errors)
         
         if not token or not check_token(token):
             return redirect(url_for('login'))
         
-        return render_template('create_school.html', form=form)
+        return render_template('create_school.html', form=form, error_message=error_message)
 
 
     @app.route('/infos-school')

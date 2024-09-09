@@ -1,26 +1,189 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<body>
-    <nav class="side-bar">
-        <div class="logo-menu">
-            <img src="{{url_for('static', filename='images/logo_educonnect_side.png')}}" alt="" class="logo">
-        </div>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .user-img {
+            width: 50px;
+            border-radius: 100%;
+            border: 1px solid #eee;
+        }
+        
+        
+        .sidebar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #22526d; /* Cor de fundo */
+            padding: .4rem .8rem;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar .top .logo {
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .sidebar .top .logo i {
+            min-width: 50px;
+            text-align: center;
+            height: 50px;
+            border-radius: 12px;
+            line-height: 50px;
+        }
+
+        .sidebar .top .logo .title-side {
+            font-size: 25px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .user p {
+            color: #fff;
+            opacity: 1;
+            margin-left: 1rem;
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
+        .sidebar ul li {
+            position: relative;
+            list-style-type: none;
+            height: 50px;
+            width: 90%;
+            margin: 0.8rem auto;
+            line-height: 50px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 0.8rem;
+        }
+
+        .sidebar ul li a:hover{
+            background-color: #fff;
+            color: #12171e;
+        }
+
+        .sidebar ul li a i {
+            min-width: 50px;
+            text-align: center;
+            height: 50px;
+            border-radius: 12px;
+            line-height: 50px;
+        }
+
+        .sidebar ul li .tooltip {
+            position: absolute;
+            left: 125px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+            border-radius: .6rem;
+            padding: .4rem 1.2rem;
+            line-height: 1.8rem;
+            z-index: 20;
+            opacity: 0;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: auto;
+            font-size: 25px;
+            color: #fff;
+            opacity: 0.4;
+            gap: 15;
+        }
+
+        a {
+            color: inherit;
+        }
+    </style>
+<body>
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <i class='bx bxs-graduation'></i>
+                <span class="title-side"> EduConnect </span>
+            </div>
+            <div class="user">
+                <img src="{{url_for('static', filename='images/shiro-pfp.png')}}" alt="" class="user-img">
+                <div>
+                <p class="bold">Shiro</p>
+                <p>Admin</p>
+                </div>
+            </div>
+        </div>
+            
         <ul class="list">
-            <li class="list-item">
+            <li>
                 <a href="home">
-                    <i class="bx bx-grid-alt"></i>
-                    <span class="link-name">Dashboard</span>
+                    <i class='bx bxs-dashboard' ></i>
+                    Dashboard
                 </a>
+                <span class="tooltip">Dashboard</span>
             </li>
-            <li class="list-item">
+            <li>
                 <a href="infos-school">
-                    <i class="bx bx-clipboard"></i>
-                    <span class="link-name">Junte-se!</span>
+                    <i class='bx bxs-school'></i>
+                    Junte-se
                 </a>
+                <span class="tooltip">Junte-se</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-user-account'></i>
+                    Seu perfil
+                </a>
+                <span class="tooltip">Seu perfil</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    Configurações
+                </a>
+                <span class="tooltip">Configurações</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-door-open' ></i>
+                    Logout
+                </a>
+                <span class="tooltip">Logout</span>
             </li>
         </ul>
-    </nav>
+        <div class="contact">
+           <a href="#">
+            <i class='bx bxs-phone' ></i>
+           </a>
+           <a href="#">
+            <i class='bx bxl-gmail' ></i>
+           </a>
+        </div>
+    </div>
 </body>
 </html>
