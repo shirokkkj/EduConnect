@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Matrícula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/criar-matricula.css') }}">
+</head>
+<body>
+    
+    <header class="__header">
+        <h2 class="__header-title">{{'Criar Nova Matrícula' if not estudant else 'Editar Matrícula:'}} </h2>
+        <button id="back-btn" onclick="window.history.back();">Voltar</button>
+    </header>
+
+    <main>
+        <form method="POST" action="{{ url_for('add_matricula') if not estudant else url_for('estudants.update_estudant', estudante_id=estudant.id) }}" class="create-registration-form">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="aluno_name">Nome do Aluno:</label>
+                {{ form.aluno_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="ano_letivo">Ano Letivo:</label>
+                {{ form.ano_letivo(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                {{ form.status(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="periodo_letivo">Período Letivo:</label>
+                {{ form.periodo_letivo(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="modalidade">Modalidade:</label>
+                {{ form.modalidade(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="data_cancelamento">Data de Cancelamento:</label>
+                {{ form.data_cancelamento(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="notas_finais">Notas Finais:</label>
+                {{ form.notas_finais(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="forma_pagamento">Forma de Pagamento:</label>
+                {{ form.forma_pagamento(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="observacoes">Observações:</label>
+                {{ form.observacoes(class="form-control") }}
+            </div>
+            <button type="submit" class="btn-submit">Criar Matrícula</button>
+        </form>
+    </main>
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+    
+</body>
+</html>

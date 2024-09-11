@@ -16,7 +16,7 @@ def create_token(username):
 def check_token(token):
     try:
         t = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms='HS256')
-        return 'Authenticated'  
+        return t
     except jwt.InvalidTokenError as invalidated:
         return 'Invalid Token'
     except jwt.ExpiredSignatureError as expirated:

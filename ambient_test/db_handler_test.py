@@ -13,7 +13,7 @@ class Matricula(Base):
     __tablename__ = 'Matrículas'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
-    aluno_id = Column(Integer, nullable=False, autoincrement=True)
+    aluno_name = Column(String(60), nullable=False)
     data_matricula = Column(DateTime, default=datetime.datetime.utcnow)
     ano_letivo = Column(Integer, nullable=False)
     status = Column(String(20), default='ativa')  # ativa, trancada, cancelada, concluída
@@ -25,7 +25,7 @@ class Matricula(Base):
     observacoes = Column(Text, nullable=True)
     
     def __repr__(self):
-        return f"<Matricula(id={self.id}, aluno_id={self.aluno_id}, curso_id={self.curso_id}, status={self.status})>"
+        return f'{self.id} {self.aluno_name} {self.data_matricula} {self.ano_letivo} {self.status} {self.periodo_letivo} {self.modalidade} {self.data_cancelamento} {self.notas_finais} {self.forma_pagamento} {self.observacoes}'
 
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
@@ -65,4 +65,11 @@ def get_session_for_school(school_name):
     return Session
 
 
-get_session_for_school('test')
+def get_matricula(school_name):
+    Session = get_session_for_school(school_name)
+    session = Session()
+    
+    return session.query(Matricula).all()
+
+for matriculas in get_matricula('testschool'):
+    print(matriculas)

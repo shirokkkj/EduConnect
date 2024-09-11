@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/matriculas.css')}}">
+</head>
+<body>
+    
+    <header class="__header">
+        <h2 class="__header-title">Suas Matrículas!</h2>
+        <button id="new-registration-btn"><a href="add_matricula">Nova Matrícula</a></button>
+    </header>
+
+    <hr class="line">
+    {% for m in matriculas %}
+    <div class="box-estudants">
+        <div class="matricula-info">
+            <span class="matricula-id">ID: {{m.id}}</span>
+            <span class="matricula-aluno">Nome: {{m.aluno_name}}</span>
+            <span class="matricula-data">Data da Matrícula: {{m.data_matricula}}</span>
+            <span class="matricula-ano">Ano Letivo: {{m.ano_letivo}}</span>
+            <span class="matricula-status" id="{{'red' if m.status == 'Trancada' else ''}}">Status: {{m.status}}</span>
+            <span class="matricula-periodo">Período Letivo: {{m.periodo_letivo}}</span>
+            <span class="matricula-modalidade">Modalidade: {{m.modalidade}}</span>
+            <span class="matricula-cancelamento">Data de Cancelamento: {{m.data_cancelamento}}</span>
+            <p class="matricula-notas">{{ m.notas_finais | replace('\n', '<br>') | safe }}</p>
+            <span class="matricula-pagamento">Forma de Pagamento: {{m.forma_pagamento}}</span>
+            <span class="matricula-observacao">Observações: {{m.observacoes}}</span>
+            <!-- Botões de ação -->
+            <div class="matricula-actions">
+                <button class="edit-btn"> <a href="{{url_for('estudants.update_estudant', estudante_id=m.id)}}">Editar Matrícula</a> </button>
+                <button class="lock-btn"><a href="{{url_for('estudants.truncate', estudante_id=m.id)}}">Trancar Matrícula</a></button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+</body>
+</html>

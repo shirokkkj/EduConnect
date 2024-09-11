@@ -1,0 +1,141 @@
+/* Atualizações no header */
+.__header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 320px;
+    padding-block: 25px;
+    align-items: center;
+    background-color: #f0f8ff; /* Cor de fundo do header */
+    border-bottom: 1px solid #38b6ff; /* Linha inferior azul */
+}
+
+.__header-title {
+    font-size: 25px;
+    color: #38b6ff;
+}
+
+#new-registration-btn {
+    background-color: #003d6b; /* Azul escuro */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#new-registration-btn:hover {
+    background-color: #002a53; /* Azul mais escuro */
+}
+
+/* Estilos para os botões dentro de cada matrícula */
+.matricula-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-btn, .lock-btn {
+    background-color: #38b6ff; /* Azul claro */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #003d6b; /* Azul escuro */
+}
+
+.lock-btn {
+    background-color: #ff6f61; /* Cor diferente para diferenciar */
+}
+
+.lock-btn:hover {
+    background-color: #cc5c5c; /* Tom mais escuro */
+}
+
+
+#red {
+    color: red;
+}
+
+.line {
+    opacity: 0.4;
+}
+
+/* Melhorias na exibição das matrículas */
+.box-estudants {
+    padding-inline: 320px;
+    padding-block: 30px;
+    margin: 20px 0;
+    background-color: #f0f8ff; /* Cor de fundo suave */
+    border: 1px solid #38b6ff; /* Borda em azul */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px); /* Começa ligeiramente deslocado */
+    animation: fadeInUp 0.5s forwards;
+}
+
+/* Animação suave ao exibir as matrículas */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo do texto dentro das matrículas */
+.box-estudants p {
+    font-size: 18px;
+    color: #003d6b;
+    margin: 0;
+}
+
+/* Efeito de hover */
+.box-estudants:hover {
+    background-color: #e0f2ff; /* Leve mudança na cor de fundo */
+    transform: scale(1.02); /* Pequeno aumento no tamanho */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais destacada */
+}
+
+
+.matricula-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 10px; /* Espaçamento entre as colunas */
+    padding: 20px;
+    background-color: #f0f8ff;
+    border: 1px solid #38b6ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out; /* Animação */
+}
+
+.matricula-info:hover {
+    transform: scale(1.02); /* Efeito de zoom ao passar o mouse */
+}
+
+.matricula-info span {
+    font-size: 16px;
+    color: #003d6b;
+    padding: 5px 0;
+}
+
+.matricula-id, .matricula-observacao {
+    grid-column: 1 / span 3; /* Faz o ID e a observação ocuparem toda a linha */
+    font-weight: bold;
+}
+
+.matricula-observacao {
+    font-style: italic;
+    color: #666;
+}
+
+

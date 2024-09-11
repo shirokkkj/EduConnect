@@ -1,0 +1,88 @@
+/* criar-matricula.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.__header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 320px;
+    padding-block: 25px;
+    align-items: center;
+    background-color: #f0f8ff; /* Cor de fundo do header */
+    border-bottom: 1px solid #38b6ff; /* Linha inferior azul */
+}
+
+.__header-title {
+    font-size: 25px;
+    color: #38b6ff;
+}
+
+#back-btn {
+    background-color: #003d6b; /* Azul escuro */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#back-btn:hover {
+    background-color: #002a53; /* Azul mais escuro */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.create-registration-form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button.btn-submit {
+    background-color: #38b6ff; /* Azul claro */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-submit:hover {
+    background-color: #003d6b; /* Azul escuro */
+}
+
+#final-noutes {
+    height: 350px;
+}

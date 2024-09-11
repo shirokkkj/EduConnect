@@ -31,6 +31,7 @@ def create_app():
     config_routes(app)
     
     from blueprints.render_routes import sidebar_route
+    from blueprints.methods_estudants import estudants_route
     app.register_blueprint(sidebar_route)
-
+    app.register_blueprint(estudants_route)
     return app
