@@ -8,25 +8,43 @@
     <link rel="icon" href="{{url_for('static',  filename='images/educonnect.png')}}" type="image/x-icon">
 </head>
 <body>
-    
-        <div class="login-container">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo">
-            </div>
-            <h1>Bem-vindo novamente!</h1>
-            <form action="login" method="POST">
-                {{ form.hidden_tag() }}
-                <div class="form-group">
-                    <label for="username">Usuário</label>
-                    {{ form.name(class='form-control', id='username', placeholder="Digite seu nome") }}
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    {{ form.password(class="form-control", id="password", placeholder="Digite sua senha") }}
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
+    <div class="login-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/educonnect.png') }}" alt="EduConnect Logo">
         </div>
+        <h1>Bem-vindo novamente!</h1>
+        <form action="login" method="POST">
+            <div class="error-message" class="hide">{{ error_message }}</div>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="dropdown">Selecione uma opção</label>
+                {{ form.dropdown(class='form-control', id='dropdown') }}
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                {{ form.cpf(class='form-control', id='cpf', placeholder="Digite seu CPF") }}
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
     </div>
+    
+    <script>
+        window.onload = function () {
+            error_message = document.querySelector('.error-message')
+            if (error_message.textContent === 'None'){
+                error_message.classList.add('hide')
+            }
+            else{
+                error_message.classList.remove('hide')
+                error_message.classList.add('show')
+    
+                setInterval(function(){
+                    error_message.classList.remove('show')
+                    error_message.classList.add('hide')
+                }, 5000)
+            }
+            
+        }
+    </script>
 </body>
 </html>

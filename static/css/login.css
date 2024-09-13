@@ -58,9 +58,40 @@ h1 {
 }
 
 /* Estilo dos inputs e labels */
+/* Estilo dos inputs e labels */
 .form-group {
     margin-bottom: 1.5rem;
 }
+
+
+.error-message {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #f44336; /* Vermelho para erro */
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateY(-20px); /* Inicialmente fora da posição */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
+
+/* Animação de entrada */
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0); /* Volta à posição original */
+}
+
+/* Animação de saída */
+.error-message.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
 
 .form-group label {
     display: block;
@@ -82,6 +113,13 @@ h1 {
     border-color: #2196f3; /* Azul Intenso */
     box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
     outline: none;
+}
+
+/* Estilo do dropdown */
+select.form-control {
+    -webkit-appearance: none; /* Remove o estilo padrão do dropdown no Chrome/Safari */
+    -moz-appearance: none; /* Remove o estilo padrão do dropdown no Firefox */
+    appearance: none; /* Remove o estilo padrão do dropdown no Opera */
 }
 
 /* Botão de submit */

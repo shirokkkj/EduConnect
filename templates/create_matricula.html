@@ -21,6 +21,10 @@
                 {{ form.aluno_name(class="form-control") }}
             </div>
             <div class="form-group">
+                <label for="aluno_cpf">CPF do Aluno:</label>
+                {{ form.cpf(class="form-control") }}
+            </div>
+            <div class="form-group">
                 <label for="ano_letivo">Ano Letivo:</label>
                 {{ form.ano_letivo(class="form-control") }}
             </div>
@@ -52,7 +56,7 @@
                 <label for="observacoes">Observações:</label>
                 {{ form.observacoes(class="form-control") }}
             </div>
-            <button type="submit" class="btn-submit">Criar Matrícula</button>
+            <button type="submit" class="btn-submit"> {{'Criar Matrícula' if not estudant else 'Editar Matrícula'}} </button>
         </form>
     </main>
     <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>

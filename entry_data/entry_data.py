@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField, BooleanField, IntegerField, DateField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, BooleanField, IntegerField, DateField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 class Login(FlaskForm):
-    name = StringField('Nome', validators=[DataRequired()])
-    password = PasswordField('Senha', validators=[DataRequired()])
+    dropdown = SelectField(choices=[])
+    cpf = StringField('CPF', validators=[DataRequired(), Length(min=11, max=11)])
     
     submit = SubmitField('Entrar')
     
@@ -31,6 +31,7 @@ class Registration_School(FlaskForm):
     
 class Register_Student(FlaskForm):
     aluno_name = StringField(validators=[DataRequired(), Length(min=5, max=60)])
+    cpf = StringField(validators=[DataRequired(), Length(min=11, max=11)])
     ano_letivo = IntegerField(validators=[DataRequired()])
     status = StringField(default='ativa')  # ativa, trancada, cancelada, concluída
     periodo_letivo = StringField(validators=[DataRequired(),Length(min=5, max=50)])  # ex: 1º semestre

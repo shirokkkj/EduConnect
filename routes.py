@@ -8,27 +8,40 @@ from config_app import db
 def config_routes(app):
     @app.route('/login', methods=['GET', 'POST'])
     def login():
-        form = Login()
         
-        token = request.cookies.get('acess_token')
+        error_message = ''
+        schools = Schools.query.all()
+        name_schools = [(school.id, school.name) for school in schools]
+        
+        
+        form = Login()
+        form.dropdown.choices = name_schools
+        token = request.cookies.get('schools_token')
+        
+        matriculas = ''
         if token:
             return redirect(url_for('home'))
         
         if form.validate_on_submit():
-            
-            cookie = make_response(redirect(url_for('home')))
-            token = create_token(form.name.data)
-            cookie.set_cookie('acess_token', token, secure=True)
-            return cookie
-        else:
-            flash('Usuário não encontrado.', 'error')
+            name_of_school = Schools.query.get(form.dropdown.data)
+            try:
+                matriculas = get_session_for_school(name_of_school.name)
+                aluno = matriculas.query(Matricula).filter_by(cpf=form.cpf.data).first()
+                if aluno is not None:
+                    cookie = make_response(redirect(url_for('home')))
+                    token = create_token(form.cpf.data)
+                    cookie.set_cookie('user_token', token, secure=True)
+                    return cookie
+            except Exception as e:
+                print(e)
+                error_message = 'Aluno não encontrado.'
         
-        return render_template('login.html', form=form)
+        return render_template('login.html', form=form, name_schools=name_schools, error_message=error_message)
 
     @app.route('/register', methods=['GET', 'POST'])
     def register():
         
-        token = request.cookies.get('acess_token')
+        token = request.cookies.get('schools_token')
         if token:
             return redirect(url_for('home'))
         
@@ -39,7 +52,7 @@ def config_routes(app):
                 if check_password(str(form.repeat_password.data)):
                     cookie = make_response(redirect(url_for('home')))
                     token = create_token(form.name.data)
-                    cookie.set_cookie('acess_token', token, secure=True)
+                    cookie.set_cookie('schools_token', token, secure=True)
                     return cookie
                 else:
                     error_message = 'Sua senha é muito fraca.'
@@ -50,7 +63,7 @@ def config_routes(app):
 
     @app.route('/home')
     def home():
-        token = request.cookies.get('acess_token')
+        token = request.cookies.get('schools_token')
         if not token or not check_token(token):
             return redirect(url_for('login'))
         
@@ -59,7 +72,7 @@ def config_routes(app):
     @app.route('/schools', methods=['GET', 'POST'])
     def schools():
         form = Registration_School()
-        token = request.cookies.get('acess_token')
+        token = request.cookies.get('schools_token')
         
         error_message = 'None'
         
@@ -72,7 +85,6 @@ def config_routes(app):
                         db.session.add(new_school)
                         db.session.commit()
                         get_session_for_school(form.name.data.replace(' ', ''))
-                        
                         return redirect(url_for('inf'))
                     else:
                         error_message = 'CEP Inválido.'
@@ -89,16 +101,17 @@ def config_routes(app):
     
     @app.route('/matrículas')
     def matriculas():
-        cookie_acess = request.cookies.get('acess_token')
+        cookie_acess = request.cookies.get('schools_token')
         token_acess = check_token(cookie_acess)
+        print(token_acess)
         
         if not token_acess or not isinstance(token_acess, dict):
             return redirect(url_for('home'))
         
-        
         mapping_tokens = {
             'Colégio Dinâmico': 'colégiodinâmico',
-            'School Test': 'testschool'
+            'School Test': 'testschool',
+            'clgdinamico': 'clgdinamico'
         }
         
         all_matriculas = []
@@ -116,12 +129,13 @@ def config_routes(app):
     @app.route('/add_matricula', methods=['GET', 'POST'])
     def add_matricula():
         form = Register_Student()
-        cookie_acess = request.cookies.get('acess_token')
+        cookie_acess = request.cookies.get('schools_token')
         token_acess = check_token(cookie_acess)
         
         mapping_tokens = {
             'Colégio Dinâmico': 'colégiodinâmico',
-            'School Test': 'testschool'
+            'School Test': 'testschool',
+            'Colégio Dinâmico2': 'clgdinamico'
         }
         
         session = get_session_for_school(mapping_tokens.get(token_acess.get('sub')))
@@ -131,6 +145,7 @@ def config_routes(app):
                 print('validated')
                 nova_matricula = Matricula(
                     aluno_name=form.aluno_name.data,
+                    cpf=form.cpf.data,
                     ano_letivo=form.ano_letivo.data,
                     status=form.status.data,
                     periodo_letivo=form.periodo_letivo.data,
@@ -159,6 +174,6 @@ def config_routes(app):
     def logout():
         cookie = make_response(redirect(url_for('login')))
         
-        cookie.set_cookie('acess_token', expires=0, secure=True)
+        cookie.set_cookie('schools_token', expires=0, secure=True)
         
         return cookie

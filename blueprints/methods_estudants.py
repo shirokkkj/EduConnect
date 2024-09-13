@@ -7,19 +7,21 @@ estudants_route = Blueprint('estudants', __name__)
 
 @estudants_route.route('/<int:estudante_id>/update', methods=['GET', 'POST'])
 def update_estudant(estudante_id):
-    form = Register_Student()
 
     cookie_acess = request.cookies.get('acess_token')
     token_acess = check_token(cookie_acess)
     
+    
     mapping_tokens = {
-        'Colégio Dinâmico': 'colégiodinâmico',
         'School Test': 'testschool'
     }
     
     session = get_session_for_school(mapping_tokens.get(token_acess.get('sub')))
     
     estudant = session.query(Matricula).filter_by(id=estudante_id).first()
+    
+    form = Register_Student(obj=estudant)
+    
     
     if estudant:
         if request.method == 'POST':

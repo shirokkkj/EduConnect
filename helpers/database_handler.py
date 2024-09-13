@@ -14,6 +14,7 @@ class Matricula(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     aluno_name = Column(String(60), nullable=False)
+    cpf = Column(String(11), nullable=False)
     data_matricula = Column(DateTime, default=datetime.datetime.utcnow)
     ano_letivo = Column(Integer, nullable=False)
     status = Column(String(20), default='ativa')  # ativa, trancada, cancelada, concluída
@@ -25,7 +26,7 @@ class Matricula(Base):
     observacoes = Column(Text, nullable=True)
     
     def __repr__(self):
-        return f'{self.id} {self.aluno_name} {self.data_matricula} {self.ano_letivo} {self.status} {self.periodo_letivo} {self.modalidade} {self.data_cancelamento} {self.notas_finais} {self.forma_pagamento} {self.observacoes}'
+        return f'{self.id} {self.aluno_name} {self.cpf} {self.data_matricula} {self.ano_letivo} {self.status} {self.periodo_letivo} {self.modalidade} {self.data_cancelamento} {self.notas_finais} {self.forma_pagamento} {self.observacoes}'
 
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
