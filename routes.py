@@ -1,5 +1,5 @@
 from flask import make_response, render_template, flash, redirect, url_for, request
-from helpers.utils import create_token, check_token, check_password, validate_phone_numbers, check_cep
+from helpers.utils import create_token, check_token, check_password, validate_phone_numbers, check_cep, return_token
 from entry_data.entry_data import Login, Register, Registration_School, Register_Student
 from models.db_models import Schools
 from helpers.database_handler import get_session_for_school, get_matricula, Matricula
@@ -19,8 +19,8 @@ def config_routes(app):
         token = request.cookies.get('schools_token')
         
         matriculas = ''
-        if token:
-            return redirect(url_for('home'))
+        # if token:
+        #     return redirect(url_for('home'))
         
         if form.validate_on_submit():
             name_of_school = Schools.query.get(form.dropdown.data)
@@ -29,6 +29,7 @@ def config_routes(app):
                 aluno = matriculas.query(Matricula).filter_by(cpf=form.cpf.data).first()
                 if aluno is not None:
                     cookie = make_response(redirect(url_for('home')))
+                    cookie.set_cookie('name_school', name_of_school.name)
                     token = create_token(form.cpf.data)
                     cookie.set_cookie('user_token', token, secure=True)
                     return cookie
@@ -64,6 +65,7 @@ def config_routes(app):
     @app.route('/home')
     def home():
         token = request.cookies.get('schools_token')
+        
         if not token or not check_token(token):
             return redirect(url_for('login'))
         
@@ -177,3 +179,18 @@ def config_routes(app):
         cookie.set_cookie('schools_token', expires=0, secure=True)
         
         return cookie
+    
+    @app.route('/info-aluno')
+    def infos_alunos():
+        token_cpf = request.cookies.get('user_token')
+        aluno_cpf = check_token(token_cpf)
+        school = request.cookies.get('name_school')
+        print(school)
+        
+        matriculados = get_session_for_school(school)
+        
+        matricula = matriculados.query(Matricula).filter_by(cpf=aluno_cpf.get('sub')).first()
+        
+        
+        return render_template('infos_alunos.html', matricula=matricula)
+        

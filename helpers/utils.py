@@ -72,3 +72,7 @@ def check_cep(cep):
             return 'CEP não encontrado.'
     else:
         return 'Erro ao buscar CEP.'
+    
+
+def return_token(cookie):
+    return check_token(cookie)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Matrícula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/matriculas.css') }}">
+</head>
+<body>
+    
+    <header class="__header">
+        <h2 class="__header-title">Sua Matrícula</h2>
+    </header>
+
+    <hr class="line">
+    <div class="box-estudants">
+        <div class="matricula-info">
+            <span class="matricula-id">ID: {{ matricula.id }}</span>
+            <span class="matricula-aluno">Nome: {{ matricula.aluno_name }}</span>
+            <span class="matricula-cpf">CPF: {{ matricula.cpf }}</span>
+            <span class="matricula-data">Data da Matrícula: {{ matricula.data_matricula }}</span>
+            <span class="matricula-ano">Ano Letivo: {{ matricula.ano_letivo }}</span>
+            <span class="matricula-status" id="{{ 'red' if matricula.status == 'Trancada' else '' }}">Status: {{ matricula.status }}</span>
+            <span class="matricula-periodo">Período Letivo: {{ matricula.periodo_letivo }}</span>
+            <span class="matricula-modalidade">Modalidade: {{ matricula.modalidade }}</span>
+            <span class="matricula-cancelamento">Data de Cancelamento: {{ matricula.data_cancelamento }}</span>
+            <p class="matricula-notas">{{ matricula.notas_finais | replace('\n', '<br>') | safe }}</p>
+            <span class="matricula-pagamento">Forma de Pagamento: {{ matricula.forma_pagamento }}</span>
+            <span class="matricula-observacao">Observações: {{ matricula.observacoes }}</span>
+        </div>
+    </div>
+
+    <div c-container='{{url_for("sidebar.render_sidebar")}}'></div>
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+</body>
+</html>
