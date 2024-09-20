@@ -42,7 +42,7 @@
    ```
 3. Instale os requirements
    ```bash
-   pip install -r requirements.txt
+   Futuramente será criado o requirements.txt, por enquanto, instale as dependências do projeto por necessidade...
    ```
 
 4. Instale o [MYSQL e o MYSQL WorkBench](https://dev.mysql.com/downloads/installer/)
