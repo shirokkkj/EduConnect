@@ -9,7 +9,7 @@ def config_routes(app):
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         
-        error_message = ''
+        error_message = 'None'
         schools = Schools.query.all()
         name_schools = [(school.id, school.name) for school in schools]
         
@@ -19,14 +19,16 @@ def config_routes(app):
         token = request.cookies.get('schools_token')
         
         matriculas = ''
-        # if token:
-        #     return redirect(url_for('home'))
+        
+        if token:
+            return redirect(url_for('home'))
         
         if form.validate_on_submit():
             name_of_school = Schools.query.get(form.dropdown.data)
             try:
                 matriculas = get_session_for_school(name_of_school.name)
                 aluno = matriculas.query(Matricula).filter_by(cpf=form.cpf.data).first()
+                print(aluno)
                 if aluno is not None:
                     cookie = make_response(redirect(url_for('home')))
                     cookie.set_cookie('name_school', name_of_school.name)
@@ -64,17 +66,25 @@ def config_routes(app):
 
     @app.route('/home')
     def home():
-        token = request.cookies.get('schools_token')
+        school_token = request.cookies.get('schools_token')
+        estudant_token = request.cookies.get('user_token')
+        print(estudant_token, school_token)
         
-        if not token or not check_token(token):
+        if not check_token(estudant_token) or not check_token(school_token):
             return redirect(url_for('login'))
+        
         
         return render_template('home.html')
 
     @app.route('/schools', methods=['GET', 'POST'])
     def schools():
         form = Registration_School()
-        token = request.cookies.get('schools_token')
+        cookie_acess = request.cookies.get('schools_token')
+        token_acess = check_token(cookie_acess)
+        
+        if not token_acess or not isinstance(token_acess, dict):
+            return redirect(url_for('home'))
+        
         
         error_message = 'None'
         
@@ -95,8 +105,6 @@ def config_routes(app):
             else:
                 print(form.name.data, form.errors)
         
-        if not token or not check_token(token):
-            return redirect(url_for('login'))
         
         return render_template('create_school.html', form=form, error_message=error_message)
     
@@ -105,15 +113,12 @@ def config_routes(app):
     def matriculas():
         cookie_acess = request.cookies.get('schools_token')
         token_acess = check_token(cookie_acess)
-        print(token_acess)
         
         if not token_acess or not isinstance(token_acess, dict):
             return redirect(url_for('home'))
         
         mapping_tokens = {
-            'Colégio Dinâmico': 'colégiodinâmico',
-            'School Test': 'testschool',
-            'clgdinamico': 'clgdinamico'
+            'Plataforma de Testes': 'plataformadetestes',
         }
         
         all_matriculas = []
@@ -137,7 +142,8 @@ def config_routes(app):
         mapping_tokens = {
             'Colégio Dinâmico': 'colégiodinâmico',
             'School Test': 'testschool',
-            'Colégio Dinâmico2': 'clgdinamico'
+            'Colégio Dinâmico2': 'clgdinamico',
+            'Plataforma de Testes': 'plataformadetestes',
         }
         
         session = get_session_for_school(mapping_tokens.get(token_acess.get('sub')))
@@ -169,6 +175,11 @@ def config_routes(app):
 
     @app.route('/infos-school')
     def inf():
+        cookie_acess = request.cookies.get('schools_token')
+        token_acess = check_token(cookie_acess)
+        
+        if not token_acess or not isinstance(token_acess, dict):
+            return redirect(url_for('home'))
         return render_template('infos_createSchool.html')
     
     
@@ -186,6 +197,9 @@ def config_routes(app):
         aluno_cpf = check_token(token_cpf)
         school = request.cookies.get('name_school')
         print(school)
+        
+        if not token_cpf or not isinstance(aluno_cpf, dict):
+            return redirect(url_for('logout'))
         
         matriculados = get_session_for_school(school)
         
