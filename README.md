@@ -21,7 +21,7 @@
 - `/static`: Arquivos estáticos (CSS, JS, imagens)
 - `/templates`: Templates HTML para renderização das páginas
 - `/models`: Definições dos modelos e interações com o banco de dados
-- `/views` // `routes.py`: Definições das rotas e lógica de controle
+- `/blueprints` // `routes.py`: Definições das rotas e lógica de controle
 - `/config`: Arquivos de configuração da aplicação
 
 ## Requisitos
