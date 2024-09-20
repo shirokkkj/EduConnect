@@ -25,8 +25,10 @@ def config_routes(app):
         
         if form.validate_on_submit():
             name_of_school = Schools.query.get(form.dropdown.data)
+            trated_name_school = name_of_school.name.replace(' ', '').lower()
+            print(trated_name_school)
             try:
-                matriculas = get_session_for_school(name_of_school.name)
+                matriculas = get_session_for_school(trated_name_school)
                 aluno = matriculas.query(Matricula).filter_by(cpf=form.cpf.data).first()
                 print(aluno)
                 if aluno is not None:
@@ -66,12 +68,17 @@ def config_routes(app):
 
     @app.route('/home')
     def home():
-        school_token = request.cookies.get('schools_token')
-        estudant_token = request.cookies.get('user_token')
-        print(estudant_token, school_token)
+        school_acess = request.cookies.get('schools_token')
+        token_acess = check_token(school_acess)
         
-        if not check_token(estudant_token) or not check_token(school_token):
-            return redirect(url_for('login'))
+        user_acess = request.cookies.get('user_token')
+        
+        
+        if not token_acess or not isinstance(token_acess, dict):
+            return redirect(url_for('logout'))
+        
+        if not user_acess or not check_token(user_acess):
+            return redirect(url_for('logout'))
         
         
         return render_template('home.html')
@@ -79,11 +86,15 @@ def config_routes(app):
     @app.route('/schools', methods=['GET', 'POST'])
     def schools():
         form = Registration_School()
-        cookie_acess = request.cookies.get('schools_token')
-        token_acess = check_token(cookie_acess)
+        
+        school_acess = request.cookies.get('schools_token')
+        token_acess = check_token(school_acess)
+        
+        
         
         if not token_acess or not isinstance(token_acess, dict):
             return redirect(url_for('home'))
+        
         
         
         error_message = 'None'
@@ -140,9 +151,6 @@ def config_routes(app):
         token_acess = check_token(cookie_acess)
         
         mapping_tokens = {
-            'Colégio Dinâmico': 'colégiodinâmico',
-            'School Test': 'testschool',
-            'Colégio Dinâmico2': 'clgdinamico',
             'Plataforma de Testes': 'plataformadetestes',
         }
         
@@ -180,6 +188,7 @@ def config_routes(app):
         
         if not token_acess or not isinstance(token_acess, dict):
             return redirect(url_for('home'))
+        
         return render_template('infos_createSchool.html')
     
     
