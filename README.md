@@ -2,11 +2,13 @@
 
 **EduConnect** é uma plataforma web desenvolvida com Flask e MySQL, projetada para facilitar a comunicação e a gestão entre estudantes, professores e instituições de ensino. O sistema oferece funcionalidades básicas de cadastro e autenticação de usuários, além de permitir interações entre as partes envolvidas.
 
+# Projeto em DESENVOLVIMENTO
+**A plataforma EduConnect não está pronta e está em construção, portanto, em caso de BUGS, má funcionalidade, erro ou sugestões, contate o discord de: `yuchironozora`**
+
 ## Funcionalidades
 
 - **Gestão de usuários**: Cadastro e login de estudantes, professores e administradores.
 - **Autenticação**: Proteção das rotas com login seguro.
-- **Sistema de comunicação**: Troca de mensagens entre usuários.
 
 ## Tecnologias Utilizadas
 
@@ -19,7 +21,7 @@
 - `/static`: Arquivos estáticos (CSS, JS, imagens)
 - `/templates`: Templates HTML para renderização das páginas
 - `/models`: Definições dos modelos e interações com o banco de dados
-- `/views`: Definições das rotas e lógica de controle
+- `/views` // `routes.py`: Definições das rotas e lógica de controle
 - `/config`: Arquivos de configuração da aplicação
 
 ## Requisitos
@@ -50,6 +52,20 @@
       python main.py
       localhost:5000/home
     ```
+
+## Faça os seus TESTES
+1. Para entrar com um login escolar, entre com a rota:
+   ```bash
+   localhost:5000/register
+   ```
+   Faça o seu registro com quaisquer informações, na sidebar, clique em 'Junte-se' e faça o registro da sua escola. Após isso, você já estará permitido a criar, editar e trancar matrículas.
+
+2. Para entrar com um login estudantil, ente com a rota:
+   ```bash
+   localhost:5000/login
+   ```
+   Selecione uma das escolas que você criou e digite o CPF de um aluno que esteja registrado naquela escola. Feito isso, a única seção disponível, por enquanto, será a de visualizar a sua própria matrícula.
+   
 
 
 ## Contribuição
