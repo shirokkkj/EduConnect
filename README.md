@@ -3,7 +3,7 @@
 **EduConnect** é uma plataforma web desenvolvida com Flask e MySQL, projetada para facilitar a comunicação e a gestão entre estudantes, professores e instituições de ensino. O sistema oferece funcionalidades básicas de cadastro e autenticação de usuários, além de permitir interações entre as partes envolvidas.
 
 # Projeto em DESENVOLVIMENTO
-**A plataforma EduConnect não está pronta e está em construção, portanto, em caso de BUGS, má funcionalidade, erro ou sugestões, contate o discord de: `yuchironozora`**
+**A plataforma EduConnect não está pronta e está em construção, portanto, em caso de BUGS, má funcionalidade, erro ou sugestões, contate o discord de: `yuchironozora`** **CSS FEITO TEMPORARIAMENTE COM USO DE IA'S.**
 
 ## Funcionalidades
 
