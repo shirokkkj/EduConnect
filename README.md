@@ -47,7 +47,10 @@
 
 4. Instale o [MYSQL e o MYSQL WorkBench](https://dev.mysql.com/downloads/installer/)
 
-5. Execute e navegue até o WebSite
+
+5. Crie um arquivo ``env`` com as informações necessárias para a conexão com o banco de dados.
+
+6. Execute e navegue até o WebSite
      ```bash
       python main.py
       localhost:5000/home
